@@ -194,6 +194,7 @@
         
         .carousel-item {
             min-width: 100%;
+            flex-shrink: 0;
         }
         
         .carousel-item img {
@@ -215,6 +216,11 @@
             border-radius: 50%;
             font-size: 1.5rem;
             z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-control:hover {
+            background: rgba(0,0,0,0.8);
         }
         
         .carousel-control.prev {
@@ -425,13 +431,10 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
         }
 
         .footer-logo img {
-            height: 50px;
-            margin-right: 10px;
+            height: 40px;
         }
 
         .social-links {
@@ -616,7 +619,7 @@
         <div class="container">
             <h2>Наше меню</h2>
             <div class="menu-categories">
-                <button class="tab-btn active" data-category="hookahs">Парные коктейли</button>
+                <button class="tab-btn active" data-category="hookahs">Паровые коктейли</button>
                 <button class="tab-btn" data-category="drinks">Напитки</button>
                 <button class="tab-btn" data-category="snacks">Снеки</button>
                 <button class="tab-btn" data-category="entertainment">Развлечения</button>
@@ -625,21 +628,21 @@
             <!-- Парные коктейли -->
             <div class="menu-items hookahs show">
                 <div class="menu-item">
-                    <img src="images/interior2.jpg" alt="Парный коктейль классический">
-                    <h3>Парный коктейль классический</h3>
+                    <img src="images/interior2.jpg" alt="Паровой коктейль классический">
+                    <h3>Паровой коктейль классический</h3>
                     <p>Dark Side, Matt Pear, Start, Inc, Satyr, Black Burn</p>
                     <span class="price">1200 ₽</span>
                 </div>
                 
                 <div class="menu-item">
                     <img src="images/interior3.jpg" alt="Парный коктейль на грейпфруте">
-                    <h3>Парный коктейль на грейпфруте</h3>
+                    <h3>Паровой коктейль на грейпфруте</h3>
                     <span class="price">1500 ₽</span>
                 </div>
                 
                 <div class="menu-item">
                     <img src="images/interior4.jpg" alt="Парный коктейль Премиум">
-                    <h3>Парный коктейль Премиум</h3>
+                    <h3>Паровой коктейль Премиум</h3>
                     <p>Bonehe, Troffmoff's</p>
                     <span class="price">1400 ₽</span>
                 </div>
@@ -780,7 +783,6 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <img src="images/logo.png" alt="SFERA LOUNGE">
-                    <span>SFERA LOUNGE</span>
                 </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -855,7 +857,7 @@
                 });
             });
             
-            // Карусель
+            // Карусель (только ручное управление)
             const carousel = document.querySelector('.carousel-inner');
             const items = document.querySelectorAll('.carousel-item');
             const prevBtn = document.querySelector('.carousel-control.prev');
@@ -876,12 +878,6 @@
                 currentIndex = (currentIndex < itemCount - 1) ? currentIndex + 1 : 0;
                 updateCarousel();
             });
-            
-            // Автопрокрутка карусели
-            setInterval(function() {
-                currentIndex = (currentIndex < itemCount - 1) ? currentIndex + 1 : 0;
-                updateCarousel();
-            }, 5000);
         });
     </script>
 </body>
