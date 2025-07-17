@@ -6,7 +6,6 @@
     <title>SFERA LOUNGE | Бронирование</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Стили из предыдущего кода */
         :root {
             --primary: #e63946;
             --secondary: #1d3557;
@@ -97,7 +96,7 @@
         }
 
         .logo img {
-            height: 40px;
+            height: 50px;
             margin-right: 10px;
         }
 
@@ -179,17 +178,67 @@
             margin-right: 10px;
         }
 
-        .about-image {
-            flex: 1;
-        }
-
-        .about-image img {
+        /* Карусель */
+        .carousel {
+            position: relative;
             width: 100%;
+            overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            z-index: 10;
+        }
+        
+        .carousel-control.prev {
+            left: 15px;
+        }
+        
+        .carousel-control.next {
+            right: 15px;
         }
 
-        /* Меню - возврат к исходному стилю */
+        .special-offer {
+            background-color: rgba(230, 57, 70, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .special-offer h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Меню */
         .menu-categories {
             display: flex;
             justify-content: center;
@@ -258,7 +307,7 @@
         }
 
         .menu-item p {
-            margin-bottom: 40px; /* Добавлено место для цены */
+            margin-bottom: 40px;
             color: #666;
         }
 
@@ -381,7 +430,7 @@
         }
 
         .footer-logo img {
-            height: 40px;
+            height: 50px;
             margin-right: 10px;
         }
 
@@ -407,28 +456,14 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .special-offer {
-            background-color: rgba(230, 57, 70, 0.1);
-            border-left: 4px solid var(--primary);
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .special-offer h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
         @media (max-width: 992px) {
             .about-content,
             .contacts-content {
                 flex-direction: column;
             }
             
-            .about-image,
-            .map {
-                margin-top: 30px;
+            .carousel-item img {
+                height: 350px;
             }
             
             h1 {
@@ -484,6 +519,15 @@
             
             .menu-items {
                 grid-template-columns: 1fr;
+            }
+            
+            .carousel-item img {
+                height: 250px;
+            }
+            
+            .carousel-control {
+                padding: 10px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -542,12 +586,26 @@
                         <p>• Дневные кальяны (12:00-18:00) - 800₽</p>
                         <p>• Можно со своим алкоголем (пробковый сбор 500₽)</p>
                     </div>
-                </div>
-                <div class="about-image">
-                    <img src="images/interior1.jpg" alt="Интерьер SFERA LOUNGE">
-                </div>
-                <div class="about-image">
-                    <img src="images/interior1.jpg" alt="Интерьер SFERA LOUNGE">
+                    
+                    <!-- Карусель изображений -->
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="images/interior1.jpg" alt="Интерьер SFERA LOUNGE">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/interior2.jpg" alt="VIP зона">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/interior3.jpg" alt="Барная стойка">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/interior4.jpg" alt="Чайная зона">
+                            </div>
+                        </div>
+                        <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -558,39 +616,37 @@
         <div class="container">
             <h2>Наше меню</h2>
             <div class="menu-categories">
-                <button class="tab-btn active" data-category="hookahs">Кальяны</button>
-                <button class="tab-btn" data-category="coffee">Кофе</button>
-                <button class="tab-btn" data-category="tea">Чай</button>
+                <button class="tab-btn active" data-category="hookahs">Парные коктейли</button>
                 <button class="tab-btn" data-category="drinks">Напитки</button>
-                <button class="tab-btn" data-category="alcohol">Алкоголь</button>
                 <button class="tab-btn" data-category="snacks">Снеки</button>
+                <button class="tab-btn" data-category="entertainment">Развлечения</button>
             </div>
             
-            <!-- Кальяны -->
+            <!-- Парные коктейли -->
             <div class="menu-items hookahs show">
                 <div class="menu-item">
-                    <img src="images/interior2.jpg" alt="Кальян классический">
-                    <h3>Кальян классический</h3>
+                    <img src="images/interior2.jpg" alt="Парный коктейль классический">
+                    <h3>Парный коктейль классический</h3>
                     <p>Dark Side, Matt Pear, Start, Inc, Satyr, Black Burn</p>
                     <span class="price">1200 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior3.jpg" alt="Кальян на грейпфруте">
-                    <h3>Кальян на грейпфруте</h3>
+                    <img src="images/interior3.jpg" alt="Парный коктейль на грейпфруте">
+                    <h3>Парный коктейль на грейпфруте</h3>
                     <span class="price">1500 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior4.jpg" alt="Кальян Премиум">
-                    <h3>Кальян Премиум</h3>
+                    <img src="images/interior4.jpg" alt="Парный коктейль Премиум">
+                    <h3>Парный коктейль Премиум</h3>
                     <p>Bonehe, Troffmoff's</p>
                     <span class="price">1400 ₽</span>
                 </div>
             </div>
             
-            <!-- Кофе -->
-            <div class="menu-items coffee">
+            <!-- Напитки -->
+            <div class="menu-items drinks">
                 <div class="menu-item">
                     <img src="images/interior1.jpg" alt="Американо">
                     <h3>Американо</h3>
@@ -604,73 +660,26 @@
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior3.jpg" alt="Капучино">
-                    <h3>Капучино</h3>
-                    <span class="price">160 ₽</span>
-                </div>
-            </div>
-            
-            <!-- Чай -->
-            <div class="menu-items tea">
-                <div class="menu-item">
-                    <img src="images/interior4.jpg" alt="Чай классический">
+                    <img src="images/interior3.jpg" alt="Чай классический">
                     <h3>Чай классический</h3>
                     <p>Черный, зеленый, улун, пуэр, ройбуш (1000мл)</p>
                     <span class="price">350 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior1.jpg" alt="Чайная церемония">
-                    <h3>Чайная церемония</h3>
-                    <p>3 вида чая на выбор с полным набором</p>
-                    <span class="price">600 ₽</span>
-                </div>
-                
-                <div class="menu-item">
-                    <img src="images/interior2.jpg" alt="Чай манго-маракуйя">
-                    <h3>Чай манго-маракуйя</h3>
-                    <p>Холодный</p>
-                    <span class="price">400 ₽</span>
-                </div>
-            </div>
-            
-            <!-- Напитки -->
-            <div class="menu-items drinks">
-                <div class="menu-item">
-                    <img src="images/interior3.jpg" alt="Лимонад банка">
+                    <img src="images/interior4.jpg" alt="Лимонад банка">
                     <h3>Лимонад (банка 0.3)</h3>
                     <span class="price">140 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior4.jpg" alt="Сок в стакане">
-                    <h3>Сок апельсин/ананас (стакан 0.33)</h3>
-                    <span class="price">140 ₽</span>
-                </div>
-                
-                <div class="menu-item">
-                    <img src="images/interior1.jpg" alt="Энергетик">
-                    <h3>Энергетический напиток</h3>
-                    <span class="price">180 ₽</span>
-                </div>
-            </div>
-            
-            <!-- Алкоголь -->
-            <div class="menu-items alcohol">
-                <div class="menu-item">
-                    <img src="images/interior2.jpg" alt="Пиво Бад">
+                    <img src="images/interior1.jpg" alt="Пиво Бад">
                     <h3>Пиво Бад/Козел</h3>
                     <span class="price">200 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior3.jpg" alt="Пиво Стелла">
-                    <h3>Пиво Стела Артуа</h3>
-                    <span class="price">220 ₽</span>
-                </div>
-                
-                <div class="menu-item">
-                    <img src="images/interior4.jpg" alt="Вино">
+                    <img src="images/interior2.jpg" alt="Вино">
                     <h3>Вино красное/белое (150мл)</h3>
                     <span class="price">350 ₽</span>
                 </div>
@@ -679,26 +688,43 @@
             <!-- Снеки -->
             <div class="menu-items snacks">
                 <div class="menu-item">
-                    <img src="images/interior1.jpg" alt="Арахис">
+                    <img src="images/interior3.jpg" alt="Арахис">
                     <h3>Арахис</h3>
                     <span class="price">90 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior2.jpg" alt="Шоколад">
-                    <h3>Шоколад</h3>
-                    <span class="price">160 ₽</span>
-                </div>
-                <div class="menu-item">
-                    <img src="images/interior2.jpg" alt="Шоколад">
+                    <img src="images/interior4.jpg" alt="Шоколад">
                     <h3>Шоколад</h3>
                     <span class="price">160 ₽</span>
                 </div>
                 
                 <div class="menu-item">
-                    <img src="images/interior3.jpg" alt="PlayStation">
+                    <img src="images/interior1.jpg" alt="Чипсы">
+                    <h3>Чипсы</h3>
+                    <span class="price">120 ₽</span>
+                </div>
+            </div>
+            
+            <!-- Развлечения -->
+            <div class="menu-items entertainment">
+                <div class="menu-item">
+                    <img src="images/interior2.jpg" alt="PlayStation">
                     <h3>PlayStation 5 (1 час)</h3>
                     <span class="price">200 ₽</span>
+                </div>
+                
+                <div class="menu-item">
+                    <img src="images/interior3.jpg" alt="Настольные игры">
+                    <h3>Настольные игры</h3>
+                    <p>Дженга, Монополия, Мафия, UNO</p>
+                    <span class="price">Бесплатно</span>
+                </div>
+                
+                <div class="menu-item">
+                    <img src="images/interior4.jpg" alt="Караоке">
+                    <h3>Караоке (1 час)</h3>
+                    <span class="price">500 ₽</span>
                 </div>
             </div>
         </div>
@@ -828,9 +854,35 @@
                     document.querySelector(`.menu-items.${category}`).classList.add('show');
                 });
             });
+            
+            // Карусель
+            const carousel = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.carousel-control.prev');
+            const nextBtn = document.querySelector('.carousel-control.next');
+            let currentIndex = 0;
+            const itemCount = items.length;
+            
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : itemCount - 1;
+                updateCarousel();
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex < itemCount - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            });
+            
+            // Автопрокрутка карусели
+            setInterval(function() {
+                currentIndex = (currentIndex < itemCount - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            }, 5000);
         });
-        
     </script>
-    
 </body>
-</html> 
+</html>
